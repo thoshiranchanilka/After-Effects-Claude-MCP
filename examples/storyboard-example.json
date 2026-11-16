@@ -1,0 +1,49 @@
+{
+  "main": "Main",
+  "palette": "blue",
+  "replace": true,
+  "scenes": [
+    {
+      "name": "S01",
+      "exit": "whip",
+      "shots": [
+        {
+          "name": "S01A", "frames": 110,
+          "elements": [
+            { "type": "text", "text": "Already using Acme Cloud?", "style": "blurRise", "accent": ["Acme Cloud"] }
+          ]
+        },
+        {
+          "name": "S01B", "frames": 120,
+          "enter": { "dir": "out", "ease": "glide" },
+          "moves": [{ "at": 50, "dir": "in", "ease": "punch" }],
+          "elements": [
+            { "type": "image", "file": "/ABSOLUTE/PATH/TO/dashboard.png", "width": 1100, "y": -40, "float": true },
+            { "type": "text", "text": "See every licence at a glance.", "y": 400, "style": "fadeHighlight", "accent": ["every licence"] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "S02",
+      "exit": "blur",
+      "shots": [
+        {
+          "name": "S02A", "frames": 100,
+          "enter": { "dir": "down", "ease": "glide" },
+          "elements": [
+            { "type": "text", "text": "Find the gaps.", "style": "bounceWords" }
+          ]
+        },
+        {
+          "name": "S02B", "frames": 140,
+          "enter": { "dir": "up", "ease": "glide" },
+          "elements": [
+            { "type": "image", "file": "/ABSOLUTE/PATH/TO/logo.png", "width": 700, "enter": "logoTumble" },
+            { "type": "text", "text": "Learn more at example.com", "y": 260, "style": "charFade" }
+          ]
+        }
+      ]
+    }
+  ]
+}

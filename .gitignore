@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+*.aep
+*.aep_AME/
+renders/
+*.mp4
+*.mov
+*.wav
+*.mp3
+
+# personal style kept out of the public repo (share by zipping the folder)
+my-style/

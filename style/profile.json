@@ -1,0 +1,630 @@
+{
+  "name": "Starter style",
+  "learnedFrom": [
+    "generic starter values - replace with your own (see GUIDE.md, \"Teaching it your own style\")"
+  ],
+  "comp": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "pixelAspect": 1,
+    "renderer": "ADBE Advanced 3d",
+    "motionBlur": true,
+    "shutterAngle": 180,
+    "bgColor": [
+      0.97,
+      0.97,
+      0.98
+    ],
+    "baseSolidColor": [
+      0.985,
+      0.985,
+      0.99
+    ]
+  },
+  "structure": {
+    "mainComp": "Main",
+    "scenesArePrecomps": true,
+    "sceneLengthFrames": {
+      "min": 160,
+      "typical": 300,
+      "max": 470
+    },
+    "sceneOverlapFrames": 0,
+    "shotLengthFrames": {
+      "q1": 75,
+      "median": 107,
+      "q3": 172
+    },
+    "notes": "Main holds scene precomps (S01, S02 ...) butted end to end. Each scene contains several camera shots."
+  },
+  "palettes": {
+    "blue": [
+      [
+        0.55,
+        0.75,
+        1.0,
+        1
+      ],
+      [
+        0.62,
+        0.9,
+        0.95,
+        1
+      ],
+      [
+        0.45,
+        0.55,
+        0.95,
+        1
+      ],
+      [
+        0.7,
+        0.68,
+        1.0,
+        1
+      ]
+    ],
+    "warm": [
+      [
+        1.0,
+        0.8,
+        0.55,
+        1
+      ],
+      [
+        1.0,
+        0.65,
+        0.6,
+        1
+      ],
+      [
+        0.95,
+        0.88,
+        0.5,
+        1
+      ],
+      [
+        1.0,
+        0.72,
+        0.8,
+        1
+      ]
+    ],
+    "violet": [
+      [
+        0.72,
+        0.62,
+        1.0,
+        1
+      ],
+      [
+        0.9,
+        0.65,
+        0.95,
+        1
+      ],
+      [
+        0.6,
+        0.7,
+        1.0,
+        1
+      ],
+      [
+        0.82,
+        0.78,
+        1.0,
+        1
+      ]
+    ]
+  },
+  "background": {
+    "description": "Two blurred 'aurora' blobs: a very wide wiggling rectangle filled with a 4-colour gradient, noise and posterize, heavily blurred, 40% opacity, placed deep behind the content (z 1513) so they parallax slowly with the camera.",
+    "blob": {
+      "rectSize": [
+        3631.6582,
+        390.3238
+      ],
+      "rectOffset": [
+        4.915,
+        602.6878
+      ],
+      "fill": [
+        0.9753,
+        0.9775,
+        0.9905,
+        1
+      ],
+      "wiggle": {
+        "size": 420,
+        "detail": 6,
+        "points": 2,
+        "wigglesPerSecond": 0.2,
+        "correlation": 10,
+        "seed": 11
+      },
+      "gaussianBlur": 160,
+      "boxBlur": {
+        "radius": 80,
+        "iterations": 5
+      },
+      "gradientPoints": [
+        [
+          174.5047,
+          422.9147
+        ],
+        [
+          1738.4972,
+          534.8844
+        ],
+        [
+          192,
+          1213.4346
+        ],
+        [
+          1734.9981,
+          1283.4157
+        ]
+      ],
+      "noise": 8,
+      "posterize": 12,
+      "scale": 90,
+      "opacity": 35
+    },
+    "blobs": [
+      {
+        "name": "BG Blob Bottom",
+        "position": [
+          960,
+          966,
+          1513
+        ],
+        "zRotation": 0
+      },
+      {
+        "name": "BG Blob Top",
+        "position": [
+          960,
+          318.67,
+          1513
+        ],
+        "zRotation": 180
+      }
+    ]
+  },
+  "cameraRig": {
+    "description": "Control Null (drift) -> Camera_Controller <shot> (all keyframes live here) -> Camera <shot> (one-node, 50mm). The camera itself is never keyframed.",
+    "controlNull": {
+      "position": [
+        960,
+        540,
+        0
+      ],
+      "drift": {
+        "freq": 0.25,
+        "ampX": 3,
+        "ampY": 3,
+        "ampZ": 0
+      },
+      "expression": "var freq = effect(\"TC - freq\")(\"Slider\");\nvar ampX = effect(\"TC - ampX\")(\"Slider\");\nvar ampY = effect(\"TC - ampY\")(\"Slider\");\nvar ampZ = effect(\"TC - ampZ\")(\"Slider\");\nvar xOffset = Math.sin(time * freq * Math.PI * 2) * ampX;\nvar yOffset = Math.cos(time * freq * Math.PI * 2) * ampY;\nvar zOffset = Math.sin(time * freq * 0.75 * Math.PI * 2) * ampZ;\nvalue + [xOffset, yOffset, zOffset];"
+    },
+    "camera": {
+      "oneNode": true,
+      "localPosition": [
+        0,
+        0,
+        -2666.6667
+      ],
+      "zoom": 2666.6667,
+      "focalMm": 50,
+      "depthOfField": false
+    },
+    "overshootExpression": "var amp = 0.03, freq = 2.5, decay = 6;\nvar n = 0;\nif (numKeys > 0) { n = nearestKey(time).index; if (key(n).time > time) { n--; } }\nvar t = (n == 0) ? 0 : time - key(n).time;\nif (n > 0 && t < 1.5) {\n  var v = velocityAtTime(key(n).time - thisComp.frameDuration / 10);\n  value + v * amp * Math.sin(freq * 1.5 * t * 2 * Math.PI) / Math.exp(decay * 2.2 * t);\n} else { value; }",
+    "overshootUsage": "optional, on a few controllers only"
+  },
+  "cameraMoves": {
+    "eases": {
+      "glide": {
+        "frames": 30,
+        "outInfluence": 70,
+        "inInfluence": 70,
+        "outLinear": false,
+        "use": "default move"
+      },
+      "glideStrong": {
+        "frames": 30,
+        "outInfluence": 90,
+        "inInfluence": 90,
+        "outLinear": false,
+        "use": "snappier move"
+      },
+      "punch": {
+        "frames": 16,
+        "outInfluence": 16.67,
+        "inInfluence": 100,
+        "outLinear": true,
+        "use": "quick push-in / pull-out that lands softly"
+      }
+    },
+    "typicalDistancePx": {
+      "crane": 320,
+      "dolly": 720,
+      "dollyPunch": 360,
+      "truck": 640
+    },
+    "moveMix": {
+      "crane down": 25,
+      "crane up": 20,
+      "pull out": 20,
+      "push in": 20,
+      "truck": 15
+    },
+    "holdBetweenMovesFrames": {
+      "min": 10,
+      "typical": 36,
+      "max": 90
+    },
+    "rotation": "cameras never rotate or zoom – all motion is translation"
+  },
+  "transitions": {
+    "shotToShot": {
+      "splitMoveCut": {
+        "description": "Signature cut. Both shots' controllers carry the SAME 40-frame move (same direction & distance, same ease). The outgoing shot plays the first half, the cut happens exactly at the midpoint (peak speed), the incoming shot plays the second half. Text in the incoming shot starts its reveal on the cut.",
+        "frames": 30,
+        "cutAt": 0.5
+      },
+      "blurAssist": "Often combined with Camera Lens Blur 40 -> 0 on incoming elements (and 0 -> 40 on outgoing) over 15–20 frames."
+    },
+    "sceneToScene": {
+      "whip": "Scene precomps butt together (0 overlap). The camera is mid-move at the join so motion carries across (same split-move idea across precomps).",
+      "blurFade": "Alternative: outgoing elements blur 0->40 + fade, incoming elements blur 40->0 + fade over 15–20 frames."
+    }
+  },
+  "text": {
+    "font": "Inter-Regular",
+    "fontFamily": "Inter",
+    "fontSize": 84,
+    "tracking": 0,
+    "leading": 100,
+    "color": [
+      0.07,
+      0.07,
+      0.09
+    ],
+    "accentColor": [
+      0.24,
+      0.35,
+      1.0
+    ],
+    "justification": "center",
+    "layerScale": 80,
+    "threeD": true,
+    "motionBlur": true,
+    "reveals": {
+      "blurRise": {
+        "default": true,
+        "animator": {
+          "position": [
+            0,
+            30,
+            0
+          ],
+          "opacity": 0,
+          "trackingAmount": 6,
+          "blur": [
+            30,
+            30
+          ]
+        },
+        "selector": {
+          "basedOn": "words",
+          "shape": "square"
+        },
+        "start": {
+          "from": 0,
+          "to": 100,
+          "frames": 24,
+          "framesRange": [
+            12,
+            48
+          ],
+          "outInfluence": 0.1,
+          "inInfluence": 100
+        }
+      },
+      "bounceWords": {
+        "animator": {
+          "position": [
+            0,
+            -50,
+            0
+          ],
+          "opacity": 0,
+          "blur": [
+            10,
+            10
+          ]
+        },
+        "expressionSelector": "var amp = 14, freq = 3, decay = 6, delay = 0.05;\nvar charDelay = textIndex * delay;\nvar t = Math.max(0, time - thisLayer.inPoint - charDelay);\nvar bounce = Math.exp(-decay * t) * Math.cos(freq * 2 * Math.PI * t);\n100 * bounce;",
+        "basedOn": "words"
+      },
+      "fadeHighlight": {
+        "description": "Words fade in tinted accent blue + slight blur and settle to the dark text colour.",
+        "fade": {
+          "opacity": 0,
+          "basedOn": "words",
+          "smoothness": 0,
+          "frames": 30,
+          "outLinear": true,
+          "inInfluence": 85
+        },
+        "tint": {
+          "fillColor": "accentColor",
+          "blur": [
+            3,
+            3
+          ],
+          "delayFrames": 3
+        }
+      },
+      "charFade": {
+        "animator": {
+          "opacity": 0
+        },
+        "basedOn": "characters",
+        "frames": 12,
+        "outLinear": true,
+        "inInfluence": 85
+      }
+    },
+    "accentWords": "Key words (brand / product names) are set in accentColor.",
+    "exit": {
+      "frames": 8,
+      "type": "opacity 100 -> 0, linear"
+    },
+    "revealStartsOnCut": true
+  },
+  "images": {
+    "threeD": true,
+    "motionBlur": true,
+    "enter": {
+      "blurPop": {
+        "frames": 18,
+        "lensBlur": [
+          30,
+          0
+        ],
+        "opacity": [
+          0,
+          100
+        ],
+        "riseFromPx": 60,
+        "outLinear": true,
+        "inInfluence": 85
+      },
+      "blurPopSoft": {
+        "frames": 14,
+        "lensBlur": [
+          30,
+          0
+        ],
+        "opacity": [
+          0,
+          100
+        ],
+        "riseFromPx": 60,
+        "outInfluence": 85,
+        "inInfluence": 85
+      },
+      "logoTumble": {
+        "frames": 18,
+        "lensBlur": [
+          30,
+          0
+        ],
+        "opacity": [
+          0,
+          100
+        ],
+        "riseFromPx": 160,
+        "orientationFrom": [
+          340,
+          10,
+          8
+        ],
+        "outLinear": true,
+        "inInfluence": 85
+      },
+      "videoPop": {
+        "frames": 18,
+        "scaleFrom": 1.3,
+        "exposureFrom": 1.2,
+        "outLinear": true,
+        "inInfluence": 100
+      },
+      "rowIn": {
+        "frames": 12,
+        "lensBlur": [
+          20,
+          0
+        ],
+        "opacity": [
+          0,
+          100
+        ],
+        "riseFromPx": 14,
+        "outLinear": true,
+        "inInfluence": 85
+      }
+    },
+    "exit": {
+      "blurOut": {
+        "frames": 12,
+        "lensBlur": [
+          0,
+          30
+        ],
+        "opacity": [
+          100,
+          0
+        ],
+        "dropPx": 60,
+        "outInfluence": 85,
+        "inInfluence": 16.67
+      }
+    },
+    "shadow": [
+      {
+        "color": [
+          0,
+          0.0459,
+          0.3945,
+          1
+        ],
+        "opacity": 25.5,
+        "direction": 15,
+        "distance": 10,
+        "softness": 80
+      },
+      {
+        "color": [
+          0,
+          0.1666,
+          0.4339,
+          1
+        ],
+        "opacity": 25.5,
+        "direction": 15,
+        "distance": 0,
+        "softness": 20
+      }
+    ],
+    "float": "seedRandom(index, true);\nvar amplitude = random(5, 10);\nvar frequency = random(0.2, 0.5);\nvar phase = random(0, Math.PI * 2);\nvar yFloat = amplitude * Math.sin(time * Math.PI * 2 * frequency + phase);\n[value[0], value[1] + yFloat, value[2]];",
+    "card": {
+      "roundness": 32,
+      "stroke": [
+        0.8535,
+        0.9197,
+        1,
+        1
+      ],
+      "strokeWidth": 1
+    }
+  },
+  "ui": {
+    "radius": 24,
+    "colors": {
+      "card": [
+        1,
+        1,
+        1
+      ],
+      "border": [
+        0.905,
+        0.9,
+        0.945
+      ],
+      "muted": [
+        0.43,
+        0.42,
+        0.5
+      ],
+      "line": [
+        0.66,
+        0.64,
+        0.74
+      ],
+      "rail": [
+        0.9,
+        0.89,
+        0.95
+      ],
+      "accentSoft": [
+        0.94,
+        0.91,
+        1.0
+      ]
+    },
+    "tones": {
+      "accent": {
+        "bg": "accentSoft",
+        "fg": "accent"
+      },
+      "neutral": {
+        "bg": [
+          0.95,
+          0.945,
+          0.975
+        ],
+        "fg": "text"
+      },
+      "warn": {
+        "bg": [
+          1,
+          0.92,
+          0.91
+        ],
+        "fg": [
+          0.84,
+          0.24,
+          0.22
+        ]
+      },
+      "good": {
+        "bg": [
+          0.9,
+          0.97,
+          0.92
+        ],
+        "fg": [
+          0.11,
+          0.58,
+          0.32
+        ]
+      },
+      "orange": {
+        "bg": [
+          1,
+          0.94,
+          0.88
+        ],
+        "fg": [
+          0.92,
+          0.44,
+          0.12
+        ]
+      }
+    },
+    "shadow": {
+      "color": [
+        0.24,
+        0.14,
+        0.5,
+        1
+      ],
+      "opacity": 40,
+      "distance": 18,
+      "softness": 60
+    }
+  },
+  "themes": {
+    "violet": {
+      "palette": "violet",
+      "accentColor": [
+        0.45,
+        0.3,
+        0.95
+      ],
+      "baseColor": [
+        0.98,
+        0.976,
+        0.995
+      ],
+      "textColor": [
+        0.098,
+        0.098,
+        0.098
+      ]
+    }
+  }
+}

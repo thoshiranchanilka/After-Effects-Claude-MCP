@@ -1,0 +1,32 @@
+{
+  "name": "after-effects-claude-mcp",
+  "version": "1.0.0",
+  "description": "MCP server that lets Claude build Adobe After Effects scenes in a learned motion-design house style",
+  "type": "module",
+  "main": "server/index.js",
+  "bin": {
+    "ae-claude-mcp": "server/index.js"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node test/run-tests.mjs",
+    "jsx": "node scripts/run-jsx.mjs",
+    "check-es3": "node scripts/check-es3.mjs",
+    "build": "npx esbuild@0.23.1 server/index.js --bundle --platform=node --format=esm --outfile=dist/server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "acorn": "8.11.3"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git"
+  }
+}
