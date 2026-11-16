@@ -24,7 +24,7 @@ Claude (Desktop / Code) ──MCP──▶ dist/server.mjs (Node, on your machin
 ## Quick start
 
 ```bash
-git clone <this repo> && cd after-effects-claude-mcp
+git clone https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git && cd After-Effects-Claude-MCP
 npm install          # only needed for tests / the helper scripts; dist/server.mjs runs on its own
 npm test             # 45 checks against a simulated After Effects
 ```
@@ -36,7 +36,7 @@ claude mcp add after-effects -- node "$(pwd)/dist/server.mjs"
 
 Claude Desktop → Settings → Developer → Edit Config:
 ```json
-{ "mcpServers": { "after-effects": { "command": "node", "args": ["/absolute/path/to/after-effects-claude-mcp/dist/server.mjs"] } } }
+{ "mcpServers": { "after-effects": { "command": "node", "args": ["/absolute/path/to/After-Effects-Claude-MCP/dist/server.mjs"] } } }
 ```
 
 In After Effects: Settings → Scripting & Expressions → **Allow Scripts to Write Files and Access Network**.
@@ -71,3 +71,4 @@ claude mcp add after-effects -e AE_STYLE_PROFILE="/path/to/my-style/profile.json
 | `scripts/run-jsx.mjs` | Run a `.jsx` file in AE from the terminal (same bridge as the tools). |
 | `scripts/check-es3.mjs` | ES3 + reserved-word check before a script reaches AE. |
 | `test/` | Simulated-AE test suite. |
+| `site/` | Landing page + docs (`python3 site/build.py` regenerates `docs.html` from GUIDE.md; deployed by `netlify.toml`). |

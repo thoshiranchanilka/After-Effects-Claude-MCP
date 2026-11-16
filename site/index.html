@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>After Effects × Claude MCP</title>
+<meta name="description" content="An MCP server that lets Claude build and edit Adobe After Effects projects from a conversation: camera rigs, split-move cuts, text reveals, shape-built UI and frame checks.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="wrap bar">
+  <a class="brand" href="./"><img src="favicon.svg" alt="">After Effects × Claude</a>
+  <nav aria-label="Main">
+    <a href="docs.html">Docs</a>
+    <a href="docs.html#5-tools">Tools</a>
+    <a href="https://github.com/thoshiranchanilka/After-Effects-Claude-MCP">GitHub</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" style="border:0">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Direct After Effects from a conversation.</h1>
+      <p class="lede">An MCP server that lets Claude build and edit real After Effects projects: camera rigs, seamless cuts,
+        text reveals and UI animation, in a style you define. Claude renders frames to check its own work, and you refine by hand.</p>
+      <div class="actions">
+        <a class="btn primary" href="docs.html">Read the guide</a>
+        <a class="btn" href="https://github.com/thoshiranchanilka/After-Effects-Claude-MCP">View on GitHub</a>
+      </div>
+    </div>
+
+    <figure class="viewer" style="margin:0" aria-label="Animated example of a split-move cut between two shots">
+      <div class="viewer-head" aria-hidden="true"><span>Main</span><span>1920×1080, 30 fps</span></div>
+      <div class="comp" aria-hidden="true">
+        <div class="shot shot-a"><div class="persona"><span class="avatar"></span>Meet Maya.</div></div>
+        <div class="shot shot-b">
+          <div class="dash">
+            <div class="dash-title"><span>Ready</span> <span>in</span> <span>five</span> <span>days.</span></div>
+            <div class="bars"><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline" aria-hidden="true">
+        <div class="track"><b class="a1">S01 A</b><b class="b1">S01 B</b><b class="a2"></b></div>
+        <div class="keys"><i style="left:30%"></i><i style="left:40%"></i><i style="left:50%"></i><i style="left:80%"></i><i style="left:90%"></i><i style="left:100%"></i></div>
+        <span class="playhead"></span>
+      </div>
+      <figcaption class="caption">A split-move cut: both shots share one camera move, and the cut lands at its fastest point.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How a request becomes a comp</h2>
+    <p class="intro">Everything runs on your machine. Claude never touches your files directly; it sends small scripts that After Effects runs.</p>
+    <ol class="flow">
+      <li><h3>You describe it</h3><p>“Build a 60-second explainer synced to this voice-over, blue palette, five scenes.”</p></li>
+      <li><h3>Claude plans and writes a job</h3><p>Scenes, shots and the move that carries each cut, sent as ExtendScript with the style library attached.</p></li>
+      <li><h3>After Effects runs it</h3><p>Through AppleScript on macOS, or the Claude Bridge panel on Windows. Each job is one undo step.</p></li>
+      <li><h3>Claude checks the result</h3><p>It renders frames after each cut and mid-shot, then fixes framing, timing and overlaps before you look.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="builds">
+  <div class="wrap">
+    <h2>What it builds</h2>
+    <p class="intro">The library behind the tools knows motion-design structure, so a request turns into a project you can open and keep editing.</p>
+    <dl class="builds">
+      <div><dt>A camera that's always alive</dt><dd>A control null with slow drift, a controller that carries every move and a 50 mm camera per shot. Glides, punches, cranes and trucks.</dd></div>
+      <div><dt>Seamless cuts</dt><dd>Split-move cuts between shots and whip joins between scenes, with the same direction and ease on both sides.</dd></div>
+      <div><dt>Text that reads</dt><dd>Word-by-word blur-rise, bounce, highlight and character reveals, with accent-coloured key words.</dd></div>
+      <div><dt>UI built from shapes</dt><dd>Cards, pills, charts, checklists, connectors, chat bubbles and slot-machine number rolls, all editable layers.</dd></div>
+      <div><dt>Images with presence</dt><dd>Blur-pop, logo tumble and video pop entrances, soft shadows and an idle float.</dd></div>
+      <div><dt>A way out of every box</dt><dd>Raw ExtendScript with the library loaded, layer inspection, frame renders and undo.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="start">
+  <div class="wrap split">
+    <div>
+      <h2>Set it up in five minutes</h2>
+      <ol class="steps">
+        <li>Install Node.js 18 or newer and clone the repository.</li>
+        <li>In After Effects, turn on <strong>Allow Scripts to Write Files and Access Network</strong> (Settings → Scripting &amp; Expressions).</li>
+        <li>Add the server to Claude Code or Claude Desktop, open a project and ask Claude to check the connection.</li>
+      </ol>
+      <p><a href="docs.html#1-install">Full setup guide</a></p>
+    </div>
+    <div>
+<pre><code><span class="c"># get the code</span>
+git clone https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git
+cd After-Effects-Claude-MCP
+npm install &amp;&amp; npm test
+
+<span class="c"># connect it to Claude Code</span>
+claude mcp add after-effects -- node "$(pwd)/dist/server.mjs"</code></pre>
+    </div>
+  </div>
+</section>
+
+<section id="style">
+  <div class="wrap">
+    <div class="style-callout">
+      <div>
+        <h2>Build in your style, not a template</h2>
+        <p>The server ships with a clean starter style. Run the exporter on a few of your finished projects and Claude
+          turns them into a style profile: move timings, eases, distances, type, reveals and palettes.</p>
+        <p>Keep that profile anywhere and point the server at it. Your look stays yours.</p>
+        <p><a href="docs.html#8-teaching-it-your-own-style">Teach it your style</a></p>
+      </div>
+<pre><code><span class="c"># use your own profile</span>
+claude mcp add after-effects \
+  -e AE_STYLE_PROFILE="/path/to/my-style/profile.json" \
+  -- node "/path/to/dist/server.mjs"</code></pre>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <h2>Fifteen tools</h2>
+    <p class="intro">Claude picks the right one for each step. You can also ask for any of them by name.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th scope="col">Tool</th><th scope="col">What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>ae_status</code></td><td>Checks that After Effects is reachable and lists the comps.</td></tr>
+        <tr><td><code>get_style_guide</code></td><td>Returns the active style guide and profile.</td></tr>
+        <tr><td><code>build_storyboard</code></td><td>Builds a whole video from a storyboard: scenes, shots, cuts, text, images and the Main comp.</td></tr>
+        <tr><td><code>create_scene</code>, <code>add_shot</code></td><td>Start a scene on the camera rig and add shots to it.</td></tr>
+        <tr><td><code>move_camera</code>, <code>split_cut</code></td><td>Key a camera move, or join two shots with one shared move.</td></tr>
+        <tr><td><code>add_text</code>, <code>add_image</code>, <code>animate_layer</code></td><td>Add content with reveals, entrances and exits.</td></tr>
+        <tr><td><code>place_scene</code>, <code>inspect_comp</code>, <code>render_frame</code></td><td>Assemble scenes in Main, read layers and keys, render a frame to look at.</td></tr>
+        <tr><td><code>run_extendscript</code>, <code>undo</code></td><td>Run any ExtendScript with the library loaded; undo the last steps.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>After Effects × Claude MCP. Apache 2.0.</span>
+    <span>Not affiliated with Adobe or Anthropic.</span>
+  </div>
+</footer>
+</body>
+</html>

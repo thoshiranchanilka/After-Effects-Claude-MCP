@@ -1,0 +1,11 @@
+# Netlify: deploys the landing page + docs in site/ (docs.html is rebuilt from GUIDE.md on every deploy)
+[build]
+  base = "site"
+  publish = "."
+  command = "python3 build.py"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

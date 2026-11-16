@@ -18,8 +18,8 @@ Everything you need to install the server, connect it to Claude, and work with i
 ## 1. Install
 
 ```bash
-git clone <this repo>
-cd after-effects-claude-mcp
+git clone https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git
+cd After-Effects-Claude-MCP
 npm install        # dev tools: tests, ES3 checker, rebuild. The server itself needs nothing.
 npm test
 ```
@@ -31,7 +31,7 @@ structure intact.
 
 **Claude Code**
 ```bash
-claude mcp add after-effects -- node "/absolute/path/to/after-effects-claude-mcp/dist/server.mjs"
+claude mcp add after-effects -- node "/absolute/path/to/After-Effects-Claude-MCP/dist/server.mjs"
 ```
 
 **Claude Desktop**: Settings → Developer → Edit Config:
@@ -40,7 +40,7 @@ claude mcp add after-effects -- node "/absolute/path/to/after-effects-claude-mcp
   "mcpServers": {
     "after-effects": {
       "command": "/opt/homebrew/bin/node",
-      "args": ["/absolute/path/to/after-effects-claude-mcp/dist/server.mjs"]
+      "args": ["/absolute/path/to/After-Effects-Claude-MCP/dist/server.mjs"]
     }
   }
 }
