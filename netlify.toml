@@ -1,7 +1,7 @@
-# Netlify: deploys the landing page + docs in site/ (docs.html is rebuilt from GUIDE.md on every deploy)
+# Netlify: site/build.py builds site/_out (landing, docs from GUIDE.md, legal pages, sitemap) with the live URL from $URL
 [build]
   base = "site"
-  publish = "."
+  publish = "_out"
   command = "python3 build.py"
 
 [[headers]]
@@ -9,3 +9,13 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"

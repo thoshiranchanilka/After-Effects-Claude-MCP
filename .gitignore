@@ -10,3 +10,6 @@ renders/
 
 # personal style kept out of the public repo (share by zipping the folder)
 my-style/
+
+# website build output
+site/_out/

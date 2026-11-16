@@ -53,6 +53,10 @@ claude mcp add after-effects -e AE_STYLE_PROFILE="/path/to/my-style/profile.json
 ```
 `STYLE.md` next to that profile is picked up automatically. See [GUIDE.md](GUIDE.md#8-teaching-it-your-own-style).
 
+## Licence
+
+Apache 2.0 (see `LICENSE`). Third-party licences: `THIRD-PARTY-NOTICES.md`. Adobe, After Effects and ExtendScript are trademarks of Adobe; Claude is a trademark of Anthropic. This project is not affiliated with either.
+
 ## Requirements
 - After Effects 2024 or newer (developed on AE 2026/2027, macOS). Windows works through the `Claude Bridge.jsx` panel.
 - Node.js 18+.
@@ -71,4 +75,5 @@ claude mcp add after-effects -e AE_STYLE_PROFILE="/path/to/my-style/profile.json
 | `scripts/run-jsx.mjs` | Run a `.jsx` file in AE from the terminal (same bridge as the tools). |
 | `scripts/check-es3.mjs` | ES3 + reserved-word check before a script reaches AE. |
 | `test/` | Simulated-AE test suite. |
-| `site/` | Landing page + docs (`python3 site/build.py` regenerates `docs.html` from GUIDE.md; deployed by `netlify.toml`). |
+| `site/` | Website: landing page, docs (from GUIDE.md), legal pages. `python3 site/build.py` builds `site/_out/` with SEO tags, sitemap and robots.txt; preview with `python3 -m http.server 8765 -d site/_out`. Netlify runs the same build (`netlify.toml`). |
+| `THIRD-PARTY-NOTICES.md` | Licences of the packages bundled into `dist/server.mjs`. |
