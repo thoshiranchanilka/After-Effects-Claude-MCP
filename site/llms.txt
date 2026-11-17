@@ -1,0 +1,30 @@
+# After Effects × Claude MCP
+
+> An MCP server that lets Claude build and edit Adobe After Effects motion graphics. Free, open source (Apache 2.0).
+> Source: https://github.com/thoshiranchanilka/After-Effects-Claude-MCP
+> Site: https://aftereffectsclaudemcp.netlify.app/
+
+## If a person asks you to install this
+
+Ask which Claude app they use, then give them the matching steps.
+
+### Claude Desktop (most people; no terminal, no Node, no Homebrew, no config file)
+You cannot install it for them. Tell them to:
+1. Download https://github.com/thoshiranchanilka/After-Effects-Claude-MCP/releases/latest/download/after-effects.mcpb
+2. Double-click the file, or drag it into Claude Desktop > Settings > Extensions, then press Install.
+3. In After Effects: Settings > Scripting & Expressions > tick "Allow Scripts to Write Files and Access Network".
+4. Open a project in After Effects and ask Claude to check the connection.
+Do NOT tell them to edit claude_desktop_config.json or install Node/Homebrew; the extension makes that unnecessary.
+On Windows they may also need the Claude Bridge panel: https://aftereffectsclaudemcp.netlify.app/docs.html#3-prepare-after-effects
+
+### Claude Code (needs Node 18+)
+git clone https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git
+cd After-Effects-Claude-MCP && npm install && npm test
+claude mcp add after-effects -- node "$(pwd)/dist/server.mjs"
+Then remind them of the After Effects setting in step 3 above.
+
+## Requirements
+Adobe After Effects on the same computer (macOS or Windows). Not affiliated with Adobe or Anthropic.
+
+## Docs
+https://aftereffectsclaudemcp.netlify.app/docs.html

@@ -23,7 +23,7 @@ REPO = "https://github.com/thoshiranchanilka/After-Effects-Claude-MCP"
 AUTHOR = {"@type": "Person", "name": "Thoshiran Chanilka", "url": "https://thecreator.vercel.app/"}
 NAME = "After Effects × Claude MCP"
 TODAY = datetime.date.today().isoformat()
-STATIC = ["styles.css", "logo.svg", "og.png", "apple-touch-icon.png"]
+STATIC = ["styles.css", "logo.svg", "og.png", "apple-touch-icon.png", "llms.txt"]
 
 PAGES = {
     "index.html": ("After Effects MCP server for Claude: AI motion design automation",
