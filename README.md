@@ -23,6 +23,16 @@ Claude (Desktop / Code) ──MCP──▶ dist/server.mjs (Node, on your machin
 
 ## Quick start
 
+**The lazy way:** open Claude Code, paste this and let it do the rest:
+
+```
+Install this After Effects MCP server for me: https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git
+```
+
+It clones the repo, runs the tests, adds the server to Claude Code and tells you what to switch on in After Effects.
+
+**By hand:**
+
 ```bash
 git clone https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git && cd After-Effects-Claude-MCP
 npm install          # only needed for tests / the helper scripts; dist/server.mjs runs on its own

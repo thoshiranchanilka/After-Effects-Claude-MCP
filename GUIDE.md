@@ -17,6 +17,15 @@ Everything you need to install the server, connect it to Claude, and work with i
 
 ## 1. Install
 
+**The lazy way:** give the repo link to Claude Code and ask it to install it:
+
+```
+Install this After Effects MCP server for me: https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git
+```
+
+Claude Code clones it, runs the tests, adds the server (step 2) and reminds you of the After Effects setting
+(step 3). Prefer doing it yourself? Read on.
+
 ```bash
 git clone https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git
 cd After-Effects-Claude-MCP
