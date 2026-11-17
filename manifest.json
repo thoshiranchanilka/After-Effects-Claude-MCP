@@ -1,0 +1,40 @@
+{
+  "manifest_version": "0.2",
+  "name": "after-effects-claude-mcp",
+  "display_name": "After Effects",
+  "version": "1.0.0",
+  "description": "Let Claude build and edit Adobe After Effects motion graphics for you.",
+  "long_description": "Build SaaS-explainer style motion graphics in Adobe After Effects by chatting: 3D camera rigs, eased moves, matched cuts, word-by-word text reveals, shape-built UI and frame checks. Needs Adobe After Effects on this computer, with Settings > Scripting & Expressions > 'Allow Scripts to Write Files and Access Network' turned on.",
+  "author": { "name": "Thoshiran Chanilka", "url": "https://thecreator.vercel.app/" },
+  "homepage": "https://aftereffectsclaudemcp.netlify.app/",
+  "repository": { "type": "git", "url": "https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git" },
+  "license": "Apache-2.0",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/server.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/server.mjs"]
+    }
+  },
+  "tools": [
+    { "name": "ae_status", "description": "Check the connection to After Effects" },
+    { "name": "get_style_guide", "description": "Read the motion style rules" },
+    { "name": "build_storyboard", "description": "Build a whole storyboard of scenes" },
+    { "name": "create_scene", "description": "Create a scene" },
+    { "name": "add_shot", "description": "Add a shot to a scene" },
+    { "name": "move_camera", "description": "Animate the camera" },
+    { "name": "split_cut", "description": "Make a seamless split-move cut" },
+    { "name": "add_text", "description": "Add animated text" },
+    { "name": "add_image", "description": "Add an image" },
+    { "name": "animate_layer", "description": "Animate a layer" },
+    { "name": "place_scene", "description": "Place a scene on the timeline" },
+    { "name": "inspect_comp", "description": "Inspect a composition" },
+    { "name": "render_frame", "description": "Render a frame so Claude can check its work" },
+    { "name": "run_extendscript", "description": "Run a custom ExtendScript" },
+    { "name": "undo", "description": "Undo the last change" }
+  ],
+  "compatibility": {
+    "platforms": ["darwin", "win32"]
+  }
+}

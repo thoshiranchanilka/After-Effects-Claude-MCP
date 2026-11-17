@@ -17,14 +17,24 @@ Everything you need to install the server, connect it to Claude, and work with i
 
 ## 1. Install
 
-**The lazy way:** give the repo link to Claude Code and ask it to install it:
+**Easiest (Claude Desktop, nothing else to install):**
+
+1. Download [`after-effects.mcpb`](https://github.com/thoshiranchanilka/After-Effects-Claude-MCP/releases/latest/download/after-effects.mcpb).
+2. Double-click it, or drag it into Claude Desktop → Settings → Extensions. Click **Install**.
+3. Do step 3 below (the After Effects setting), then ask Claude to check the connection.
+
+No Node, no Homebrew, no terminal, no config file: Claude Desktop brings its own Node and sets the server up itself.
+
+**Claude Code, the lazy way:** give the repo link to Claude Code and ask it to install it:
 
 ```
 Install this After Effects MCP server for me: https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git
 ```
 
 Claude Code clones it, runs the tests, adds the server (step 2) and reminds you of the After Effects setting
-(step 3). Prefer doing it yourself? Read on.
+(step 3).
+
+**Developers:** clone and run it by hand, as below.
 
 ```bash
 git clone https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git

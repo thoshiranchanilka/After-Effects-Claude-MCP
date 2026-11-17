@@ -45,6 +45,7 @@ NAV = """<header class="nav pad">
   <nav class="nav-links" aria-label="Main">
     <a href="./#capabilities">Capabilities</a>
     <a href="./#how">How it works</a>
+    <a href="./#desktop">Claude Desktop</a>
     <a href="docs.html" class="keep">Docs</a>
   </nav>
   <a class="btn dark" href="%s">Get the code</a>

@@ -23,7 +23,9 @@ Claude (Desktop / Code) ──MCP──▶ dist/server.mjs (Node, on your machin
 
 ## Quick start
 
-**The lazy way:** open Claude Code, paste this and let it do the rest:
+**Claude Desktop, no terminal:** download [`after-effects.mcpb`](https://github.com/thoshiranchanilka/After-Effects-Claude-MCP/releases/latest/download/after-effects.mcpb), double-click it and press Install. Nothing else to set up (no Node, no Homebrew, no config file). Then turn on the After Effects setting below.
+
+**Claude Code, the lazy way:** open Claude Code, paste this and let it do the rest:
 
 ```
 Install this After Effects MCP server for me: https://github.com/thoshiranchanilka/After-Effects-Claude-MCP.git

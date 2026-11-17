@@ -13,3 +13,6 @@ my-style/
 
 # website build output
 site/_out/
+
+# one-click Claude Desktop extension (attach to a GitHub Release)
+*.mcpb
